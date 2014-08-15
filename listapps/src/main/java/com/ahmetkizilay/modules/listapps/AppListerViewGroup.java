@@ -115,6 +115,12 @@ public class AppListerViewGroup extends RelativeLayout {
     }
 
     public void setMinimalMode() {
+        // ignore minimal mode if there is not enough items
+        if(this.mAppList.size() <= this.mMaxInitialDisplayLength) {
+            this.setExpandedMode();
+            return;
+        }
+
         List<AppInfo> dummyList = new ArrayList<AppInfo>();
         for(int i = 0; i < this.mMaxInitialDisplayLength; i += 1) {
             dummyList.add(this.mAppList.get(i));
@@ -132,6 +138,27 @@ public class AppListerViewGroup extends RelativeLayout {
 
     public void setListItemClickedListener(ListItemClickedListener listener) {
         this.mCallback = listener;
+    }
+
+    public void setMaxInitialDisplayLength(int val) {
+        this.mMaxInitialDisplayLength = val;
+    }
+
+    public int getMaxInitialDisplayLength() {
+        return this.mMaxInitialDisplayLength;
+    }
+
+    public void setIntentNameAndType(String intentName, String intentType) {
+        this.mIntentName = intentName;
+        this.mIntentType = intentType;
+
+        this.mAppList = initAppList();
+        if(this.mAppList.size() >= this.mMaxInitialDisplayLength) {
+            setMinimalMode();
+        }
+        else {
+            setExpandedMode();
+        }
     }
 
     public interface ListItemClickedListener {

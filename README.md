@@ -24,3 +24,6 @@ To list activities with which you can share images:
     app:intent_name="android.intent.action.SEND"
     app:max_initial_items="4"/>
 ```
+
+#### Testing
+Unit tests are available in [ShareWithListAppsActivityTest](https://github.com/artsince/ListAppsModuleProject/tree/master/app/src/main/tests/com/ahmetkizilay/modules/test/listappsmoduleproject/ShareWithListAppsActivityTest.java) class.
